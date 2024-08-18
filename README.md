@@ -10,11 +10,17 @@ performance in that user chosen year.
 
 ## Features
 -**Top 5 players by usage rate**: The top 5 players with the highest usage rates for the user chosen team display how often a player is put to work offensively
+
 -**Predicted Points Added**: Points that the player is predicted to add per offensive snap
+
 -**Stats**: Yd and td stats in a statistical category based on player postion that allow the user to visualize how a player's usage rate affects their stats
+
 -**Team Record**: A record of the user chosen team in the user chosen season
+
 -**ChatGPT Analysis**: A performance review provided by chatgpt on the user chosen team and year.
+
 -**Concurrent API Requests**: A faster and more efficent api request tactic to grab user data
+
 -**Interactive Web Interface**: A web interface formed by flask that enables users to submit requests and to quickly retrieve insightful responses
 
 ## Installation
@@ -30,6 +36,7 @@ A personal CFBD(CollegeFootballData.com) api key and OpenAI api key are needed a
 git clone https://github.com/dyl-23/College_Football_Data_Analysis_with_AI.git
 cd College_Football_Data_Analysis_with_AI
 ```
+
 2) **Create and Start Virtual Environment**:
 ```bash
 On Mac-
@@ -40,6 +47,7 @@ On Windows-
 python -m venv venv
 venv\Scripts\activate
 ```
+
 3) **Install Dependencies**:
 ```bash
 pip install -r requirements.txt
@@ -51,12 +59,12 @@ CFBD_API_KEY = your_college_football_data_api_key
 OPENAI_API_KEY = your_openai_api_key
 ```
 
-5) **Run app.py file**
+5) **Run app.py file**:
 ```bash
 python app.py
 ```
 
-6) **Open Web Browser**
+6) **Open Web Browser**:
 Go to http://127.0.0.1:5000
 
 ### Usage
@@ -66,6 +74,7 @@ learn more about the chosen team in the chosen year from the content generated b
 
 ## Acknowledgements
 Thank you to CollegeFootballData.com for the in depth data
+
 Thank you to OpenAI for the language model integration
 
 
