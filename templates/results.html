@@ -1,0 +1,76 @@
+<!--
+The following code refers to the template returned to the search engine that is running http://127.0.0.1:5000/ for the user. It is important to note that
+flask enables the rendering of the results.html page. First the title of the page is made and a font is taken from google. Next is all the css styling that 
+allows for the the spacing and alignment of text and pictures within the results page. An explanation of the results follows the styling. Then comes
+the image that was made and edited in the home function in app.py through flask handling the user requests and dyanmically creating a football field image
+with the user's input. The same home function in app.py that flask is managing provides results.html a chatgpt response in the results.html rendered template.
+The chatgpt response is placed below the football field image and a reset button navigating back to index.html is set as well.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>College Football Data Analysis with AI Results</title>
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: white;
+        font-family: 'Rubik', sans-serif;
+    }
+    h1, h2 {
+        text-align: center;
+    }
+    .dacontainer {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      margin: 0 auto;
+      width: 90%;
+      max-width: 1200px;
+    }
+    .daimage-container {
+        text-align: center;
+    }
+    img {
+      display: block;
+      margin: 20px auto;
+      width: 100%;
+      max-width: 100%;
+    }
+    p {
+      text-align: left;
+      font-size: 20px;
+    }
+    .dachatgpt-response{
+      max-width: 800px;
+      margin-top: 20px;
+    }
+    .dareset-button {
+      margin-top: 20px;
+      display: inline-block;
+    }
+  </style>
+</head>
+<body>
+  <div class="dacontainer">
+    <h1>College Football Data Analysis with AI Results</h1>
+    <p>The following data sorts the top 5 players by usage rate on the user chosen football team for the user chosen season. Player's usage rates are displayed along 
+      with their ppa to demonstrate how their usage rate affects their ppa. Player's stats are shown as well coressponding to their given postion.
+      Team info is displayed on the upper right hand corner of the field.</p>
+      <div class="daimage-container">
+        <img src="{{ url_for('static', filename='field_plot.png') }}" alt="Football Field with Data">
+      </div>
+    <div class="dachatgpt-response">
+      <h3>ChatGPT Analysis</h3>
+      <p>{{ chatgpt_response }}</p>
+    </div>
+    <div class="dareset-button">
+      <form action="/" method="get">
+        <button type="submit">Reset</button>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

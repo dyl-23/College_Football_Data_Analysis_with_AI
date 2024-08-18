@@ -1,0 +1,107 @@
+<!--
+The following code refers to the index.html template that is rendered by the flask application in home. When a user visits http://127.0.0.1:5000/
+flask will notify the home function to look out for GET and POST after the / of the url. If POST is found then that means the user submitted something
+on the form. It is made sure that there are no errors after the user submits their input. If POST is not found, then index.html is rendered. In index.html
+the title of the page is first set and then a color is imported by a google link. The css styling follows this and this is used to space out all text and images,
+align text boxes, add limits and more. Below in the body, forms are created for the team name and year. There are some precautions taken to check the user
+has proper input before trying to click submit, as a year within the right time frame must be chosen before a user can submit. Any other uncaught errors
+will pop up later through rendering the error to index.html from app.py after the error caught in app.py. Next a college football map image that comes
+from a reddit page is placed and to the right of that is a text block consisting of info about the data metrics.
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content=""width=device-width, intial-scale="1.0">
+    <title>College Football Data Analysis with AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500;700&display=swap" rel="stykesheet">
+    <style>
+        body {
+            background-color: white;
+            font-family: 'Rubik', sans-serif;
+            color: #293241;
+        }
+        h1, h2 {
+            text-align: center;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 20px;
+            margin: 0 auto;
+            width: 90%;
+            max-width: 1600px;
+        }
+        .form-image-container {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-container {
+            display: inline-block;
+            text-align: left;
+            margin-left: 50px;
+        }
+        .image-container { 
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+            margin-top: 5px;
+        }
+        .metrics-container{
+            flex: 1;
+            max-width: 400px;
+        }
+        img {
+            display: block;
+            margin: 0 auto;
+            max-width: 100%;
+            height: 650px;
+            width: 650px;
+            object-fit: contain;
+            object-position: center;
+
+        }
+        p {
+            text-align: left;
+        }
+        .error {
+            color: red;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>College Football Data Analysis with AI</h1>
+    <div class="container">
+        <div class="form-image-container">
+            <div class="form-container">
+                <h2>Please pick a team and a year (2014-2023) to see that teams's performance in that year. Please note that OpenAi doesn't have updated info on the 2023 season: </h2>
+                <form method="post">
+                    <label for="team">Team:</label>
+                    <input type="text" id="team" name="team" required>
+                    <br><br>
+                    <label for="year">Year:</label>
+                    <input type="number" id="year" name="year" min= "2014" max="2023" required>
+                    <br><br>
+                    <button type="submit">Submit</button>
+                </form>
+                {% if error %}
+                <p class="error">{{ error }}</p>
+                {% endif %}
+            </div>
+            <div class="image-sontainer">
+                <img src="{{ url_for('static', filename='cfb_field.webp') }}" alt="College Football Map">
+            </div>
+        </div>
+        <div class="metrics-container">
+            <h3>Curious about the data metrics?</h3>
+            <p>The data comes from CollegeFootballData.Com, which is a sports analytics website that provides api access.</p>
+            <p>PPA utilizes expected points to determine the outcome of a play. The expected point vaue from the begining of a play (e.g., 2nd and 5 at the 50) is taken and then subtracted from the expected point value in the resulting play (e.g., run for 10 yards results in 1st and 10 from the 40).</p>
+            <p>Per CollegeFootballData.com, expected points assume that not all yard lines are created equal. In other words, each yard line is assigned a point value and measures the number of points that would be expected to be scored based on down, distance and field position. A negative value means that that the opposing team would be expected to score the next points in the game.</p>
+            <p>Usage rate is the percentage of plays on which a player was involved. Recordable events include passes, incompletions, rushes, receptions and targets.</p>
+        </div>
+    </div>
+</body>
+</html>
